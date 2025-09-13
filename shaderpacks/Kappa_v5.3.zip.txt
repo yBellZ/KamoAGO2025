@@ -1,0 +1,6 @@
+#Sat May 03 18:12:33 BRT 2025
+motionblurScale=0.5
+ssptEnabled=false
+shadowFilterIterations=12
+airTransmittanceHQ=false
+bloomEnabled=false

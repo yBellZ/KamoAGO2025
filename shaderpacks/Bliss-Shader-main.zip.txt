@@ -1,0 +1,2 @@
+#Tue Jul 15 14:23:43 BRT 2025
+sun_illuminance=60000.0
