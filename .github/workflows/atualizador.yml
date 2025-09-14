@@ -20,3 +20,4 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
