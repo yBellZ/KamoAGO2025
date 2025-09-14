@@ -1,0 +1,22 @@
+name: Atualizador das release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create Release
+        uses: Akryum/release-tag@v4.0.3
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
