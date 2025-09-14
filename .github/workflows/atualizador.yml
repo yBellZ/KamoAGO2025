@@ -1,4 +1,4 @@
-name: Atualizador das release
+name: Create GitHub Release
 
 on:
   push:
@@ -15,10 +15,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Get commit message
+        id: get_message
+        run: |
+          COMMIT_MSG="$(git log -1 --pretty=%B ${{ github.sha }})"
+          echo "commit_msg<<EOF" >> $GITHUB_OUTPUT
+          echo "$COMMIT_MSG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Create Release
         uses: Akryum/release-tag@v4.0.3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref_name }}
-          release_name: Release ${{ github.ref_name }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: ${{ steps.get_message.outputs.commit_msg }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
